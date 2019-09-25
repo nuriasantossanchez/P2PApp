@@ -1,0 +1,188 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+        <Style x:Key="{x:Type Button}" TargetType="{x:Type ButtonBase}">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
+        <Setter Property="Background" Value="{DynamicResource PincelFondoBoton}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource PincelBorde}"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid x:Name="Grid">
+                        <Rectangle Stroke="#FFFFFFFF" 
+                                    RadiusX="5" 
+                                    RadiusY="5" 
+                                    x:Name="rectangulo" 
+                                    StrokeThickness="2" 
+                                    Fill="{DynamicResource PincelNaranjaDegradado}"/>
+          
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                          Margin="{TemplateBinding Padding}" 
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                          RecognizesAccessKey="True"
+                                          OpacityMask="{x:Null}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true"/>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Fill" TargetName="rectangulo">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.496,1.002" StartPoint="0.453,-0.109">
+                                        <GradientStop Color="#BB5D23" Offset="0"/>
+                                        <GradientStop Color="#FCA904" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="#FFEEEEEE" Offset="0"/>
+                                        <GradientStop Color="#FF39CF6B" Offset="1"/>
+                                        <GradientStop Color="#FFE7E7E7" Offset="0.202"/>
+                                        <GradientStop Color="#FF39CF6B" Offset="0.205"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Fill" TargetName="rectangulo">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.468,-0.109" StartPoint="0.481,1.002">
+                                        <GradientStop Color="#FF006900" Offset="0"/>
+                                        <GradientStop Color="#FF39CF6B" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="true"/>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource PincelGrisClaro}"/>
+                            <Setter Property="IsEnabled" TargetName="rectangulo" Value="False"/>
+                            <Setter Property="Fill" TargetName="rectangulo">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                        <GradientStop Color="#FF9C9A9C" Offset="0"/>
+                                        <GradientStop Color="#FF393439" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SimpleButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border>
+                        <Rectangle Margin="2" Stroke="#60000000" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EstiloCerrar" BasedOn="{x:Null}" TargetType="{x:Type Button}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Grid>
+                        <Rectangle Fill="{DynamicResource ElementoCerrar}" 
+                                   Stroke="{x:Null}" 
+                                   x:Name="rectangulo" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsFocused" Value="True"/>
+						<Trigger Property="IsDefaulted" Value="True"/>
+                        <Trigger Property="IsMouseOver" Value="True" />
+						<Trigger Property="IsPressed" Value="True"/>
+						<Trigger Property="IsEnabled" Value="False"/>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+    <Style x:Key="EstiloMinimizar" BasedOn="{x:Null}" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle Fill="{DynamicResource ElementoMinimizar}" 
+                                   Stroke="{x:Null}" 
+                                   x:Name="rectangulo" />
+                        <Line X1="23" Y1="23" X2="29" Y2="23" Stroke="#ddCFCFCF"
+          StrokeThickness="5" />
+                        <Path Stroke="#ddCFCFCF" StrokeThickness="5">
+                                <Path.Data>
+                                <LineGeometry StartPoint="23 23" EndPoint="4 23" />
+                                </Path.Data>
+                            </Path>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True"/>
+                        <Trigger Property="IsDefaulted" Value="True"/>
+                        <Trigger Property="IsMouseOver" Value="True" />
+                        <Trigger Property="IsPressed" Value="True"/>
+                        <Trigger Property="IsEnabled" Value="False"/>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DrawingBrush x:Key="ElementoCerrar">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 0.97093,0L 24.0291,0C 24.5814,0 25.0291,0.447718 25.0291,1L 25.0291,24C 25.0291,24.5523 24.5814,25 24.0291,25L 0.97093,25C 0.418645,25 -0.0290696,24.5523 -0.0290696,24L -0.0290696,1C -0.0290696,0.447718 0.418645,0 0.97093,0 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen LineJoin="Round" Brush="#AAD1D1D1"/>
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.5,1.00112" EndPoint="0.5,-0.001118">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FFE9E9E9" Offset="0"/>
+                                    <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="#ddCFCFCF" Geometry="F1 M 19.2315,4.1442L 20.8617,5.77437C 21.2522,6.16489 21.2522,6.79806 20.8617,7.18859L 7.19093,20.8593C 6.8004,21.2498 6.16724,21.2498 5.77671,20.8593L 4.14654,19.2291C 3.75602,18.8386 3.75602,18.2055 4.14654,17.8149L 17.8173,4.1442C 18.2078,3.75368 18.841,3.75368 19.2315,4.1442 Z "/>
+                    <GeometryDrawing Brush="#ddCFCFCF" Geometry="F1 M 20.8617,19.2291L 19.2315,20.8593C 18.841,21.2498 18.2078,21.2498 17.8173,20.8593L 4.14654,7.18859C 3.75602,6.79806 3.75602,6.1649 4.14654,5.77437L 5.77671,4.14421C 6.16724,3.75368 6.8004,3.75368 7.19093,4.14421L 20.8617,17.8149C 21.2522,18.2055 21.2522,18.8386 20.8617,19.2291 Z "/>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="ElementoMinimizar">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 0.97093,0L 24.0291,0C 24.5814,0 25.0291,0.447718 25.0291,1L 25.0291,24C 25.0291,24.5523 24.5814,25 24.0291,25L 0.97093,25C 0.418645,25 -0.0290696,24.5523 -0.0290696,24L -0.0290696,1C -0.0290696,0.447718 0.418645,0 0.97093,0 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen LineJoin="Round" Brush="#AAD1D1D1"/>
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.5,1.00112" EndPoint="0.5,-0.001118">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FFE9E9E9" Offset="0"/>
+                                    <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>    
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+    
+</ResourceDictionary>

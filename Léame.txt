@@ -1,0 +1,15 @@
+Contenido:
+
+	1. Código Fuente: contiene el código fuente de la aplicación.
+	
+
+	2. Instalador de la Aplicación: contiene un archivo de instalación de la aplicación 
+					y otro archivo para instalar el instalador de Windows 
+					en caso de que el equipo de destino no lo tuviera.
+
+					Se recomienda leer el "Manual de Instalación" que contiene 
+					la memoria del proyecto, donde se especifican los servicios 
+					que obligatoriamente tienen que estar iniciados en Windows
+					para el correcto funcionamiento de la aplicación.
+
+	3. Memoria: contiene la memoria del proyecto en formato pdf.
