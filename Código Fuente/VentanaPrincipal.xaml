@@ -1,0 +1,209 @@
+﻿<Window x:Class="Peer2PeerApp.VentanaPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2006" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        mc:Ignorable="d"
+        xmlns:chat="clr-namespace:Peer2PeerApp.WPF.Chat"
+        xmlns:red="clr-namespace:Peer2PeerApp.WPF.Red"   
+        xmlns:fichero="clr-namespace:Peer2PeerApp.WPF.Fichero"   
+        xmlns:multimedia="clr-namespace:Peer2PeerApp.WPF.Multimedia"   
+        xmlns:imagen="clr-namespace:Peer2PeerApp.WPF.Imagen"
+        xmlns:descarga="clr-namespace:Peer2PeerApp.WPF.Descarga"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" 
+        WindowStyle="None" 
+        Background="{x:Null}"  
+        MouseDown="VentanaPrincipal_MouseDown"
+        Title="Peer2PeerApp"
+        Height="700" 
+        Width="630"
+        MinWidth="630" MinHeight="700" MaxWidth="630" MaxHeight="700"
+        VerticalAlignment="Stretch" >
+    
+    <Border Width="Auto" Height="Auto">
+
+        <Grid ShowGridLines="False">
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="40" MinHeight="40" />
+                <RowDefinition  Height="Auto" MinHeight="200" />
+                <RowDefinition Height="420*" />
+            </Grid.RowDefinitions>
+
+            <StatusBar Grid.Row="0">
+                <StatusBarItem>
+                </StatusBarItem>
+            </StatusBar>
+            
+            <DockPanel Grid.Row="0">
+                <ToolBar Background="{StaticResource PincelGris}"  
+                         FontFamily="Calisto MT" 
+                         FontSize="12">
+                    <Button x:Name="btnRed"
+                            ToolTip="Red"
+                            Foreground="{StaticResource PincelCabecera}" 
+                            Click="btnRed_Click" >
+                        <Image Source="/Peer2PeerApp;component/Imagenes/imgNet.jpg"
+                           Width="40"
+                           Height="40"
+                           Stretch="Fill">
+                        </Image>
+                    </Button>
+                    <Separator/>
+                    <Button x:Name="btnDescargar"
+                            ToolTip="Descargas"
+                            Foreground="{StaticResource PincelCabecera}" 
+                            Click="btnDownload_Click" >
+                        <Image Source="/Peer2PeerApp;component/Imagenes/imgDescargar.jpg"
+                           Width="40"
+                           Height="30"
+                           Stretch="Fill">
+                        </Image>
+                    </Button>
+                    <Separator/>
+                    <Button x:Name="btnVideo"
+                            ToolTip="Reproductor de Vídeo"
+                            Foreground="{StaticResource PincelCabecera}" 
+                            Click="btnVideo_Click" >
+                        <Image Source="/Peer2PeerApp;component/Imagenes/imgVideo.jpg"
+                           Width="45"
+                           Height="30"
+                           Stretch="Fill">
+                        </Image>
+                    </Button>
+                    <Separator/>
+                    <Button x:Name="btnAudio" 
+                            ToolTip="Reproductor de Audio"
+                            Foreground="{StaticResource PincelCabecera}" 
+                            Click="btnAudio_Click" >
+                        <Image Source="/Peer2PeerApp;component/Imagenes/imgAudio.jpg"
+                           Width="36"
+                           Height="29"
+                           Stretch="Fill">
+                        </Image>
+                    </Button>
+                    <Separator/>
+                    <Button x:Name="btnFichero"
+                            ToolTip="Intercambio de Archivo"
+                            Foreground="{StaticResource PincelCabecera}" 
+                            Click="btnFichero_Click" >
+                        <Image Source="/Peer2PeerApp;component/Imagenes/imgFichero.jpg"
+                           Width="40"
+                           Height="30"
+                           Stretch="Fill">
+                        </Image>
+                    </Button>
+                    <Separator/>
+                    <Button x:Name="btnImagen"
+                            ToolTip="Visor de Imagen"
+                            Foreground="{StaticResource PincelCabecera}" 
+                            Click="btnImagen_Click">
+                        <Image Source="/Peer2PeerApp;component/Imagenes/imgFoto.jpg"
+                           Width="44"
+                           Height="27"
+                           Stretch="Fill">
+                        </Image>
+                    </Button>
+                    <Separator/>
+                    <Button x:Name="btnChat"
+                            ToolTip="Chat"
+                            Foreground="{StaticResource PincelCabecera}" 
+                            Click="btnChat_Click">
+                        <Image Source="/Peer2PeerApp;component/Imagenes/imgChat.jpg"
+                           Width="40"
+                           Height="36"
+                           Stretch="Fill">
+                        </Image>
+                    </Button>
+                    <Separator/>
+                </ToolBar>
+
+                <Button x:Name="btnMinimizar" 
+                    HorizontalAlignment="Right" 
+                    Margin="170,5,0,5" 
+                    ToolTip="Minimizar"
+                    Style="{DynamicResource EstiloMinimizar}" 
+                    VerticalAlignment="Top" 
+                    Width="33" 
+                    Height="30" 
+                    Content="Button" 
+                    Click="btnMinimizar_Click"/>
+
+                <Button x:Name="btnSalir"
+                    HorizontalAlignment="Right" 
+                    Margin="0,5,5,5" 
+                    ToolTip="Cerrar"
+                    Style="{DynamicResource EstiloCerrar}" 
+                    VerticalAlignment="Top" 
+                    Width="33" 
+                    Height="30" 
+                    Content="Button" 
+                    Click="btnSalir_Click"/>
+            </DockPanel>
+
+            <Canvas Name="ComponentCanvas" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,0">
+                <red:GestorRedUserControl x:Name="controlGestorRed" 
+                                    Height="200"
+                                    Width="630"
+                                    Canvas.Left="0" 
+                                    Canvas.Top="10"
+                                    Visibility="Hidden"
+                                    Chat="{Binding ElementName=controlChat}"
+                                    Fichero="{Binding ElementName=controlFichero}"
+                                    Audio="{Binding ElementName=controlAudio}"
+                                    Video="{Binding ElementName=controlVideo}"
+                                    Imagen="{Binding ElementName=controlImagen}"
+                                    Descarga="{Binding ElementName=controlDescarga}">
+                </red:GestorRedUserControl>
+
+                <descarga:DescargaUserControl x:Name="controlDescarga" 
+                                          Height="620" 
+                                          Width="630" 
+                                          Canvas.Left="0" 
+                                          Canvas.Top="10"
+                                          Visibility="Hidden">
+                </descarga:DescargaUserControl>
+                
+                <multimedia:MultimediaUserControl x:Name="controlVideo"
+                                    Height="620"
+                                    Width="630"
+                                    Canvas.Left="0"
+                                    Canvas.Top="10"
+                                    Visibility="Hidden">
+                </multimedia:MultimediaUserControl>
+
+                <multimedia:MultimediaUserControl x:Name="controlAudio"
+                                Height="190"
+                                Width="310"
+                                Canvas.Left="0"
+                                Canvas.Top="220"
+                                Visibility="Hidden">
+                </multimedia:MultimediaUserControl>
+                
+                <fichero:FicheroUserControl x:Name="controlFichero"
+                                  Height="190"
+                                  Width="310"
+                                  Canvas.Left="320"
+                                  Canvas.Top="220"
+                                  Visibility="Hidden">
+                </fichero:FicheroUserControl>
+
+                <imagen:ImagenUserControl x:Name="controlImagen"
+                                      Height="210"
+                                      Width="310"
+                                      Canvas.Left="0"
+                                      Canvas.Top="420" 
+                                      Visibility="Hidden">
+                </imagen:ImagenUserControl>
+
+                <chat:ChatUserControl x:Name="controlChat" 
+                                  Height="210"
+                                  Width="310"
+                                  Canvas.Left="320" 
+                                  Canvas.Top="420"
+                                  Visibility="Hidden">
+                </chat:ChatUserControl>
+            </Canvas>
+        </Grid>
+    </Border>
+</Window>
